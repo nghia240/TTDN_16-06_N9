@@ -3,7 +3,7 @@
         <field name="name">du.an.graph.trang_thai</field>
         <field name="model">du_an</field>
         <field name="arch" type="xml">
-            <graph string="Thống kê Trạng Thái Dự Án" type="pie">
+            <graph string="Thống kê trạng thái dự án" type="pie">
                 <field name="trang_thai" type="row"/>
                 <field name="id" type="measure"/>
             </graph>
@@ -14,7 +14,7 @@
         <field name="name">du.an.graph.uu_tien</field>
         <field name="model">du_an</field>
         <field name="arch" type="xml">
-            <graph string="Thống kê Mức Độ Ưu Tiên" type="pie">
+            <graph string="Thống kê mức độ ưu tiên" type="pie">
                 <field name="muc_uu_tien" type="row"/>
                 <field name="id" type="measure"/>
             </graph>

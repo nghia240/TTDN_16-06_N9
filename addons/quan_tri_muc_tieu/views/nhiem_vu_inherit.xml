@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nhiem_vu_form_inherit_tien_do_pct" model="ir.ui.view">
+        <field name="name">nhiem.vu.form.inherit.tien.do.pct</field>
+        <field name="model">nhiem_vu</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_nhiem_vu_form"/>
+        <field name="arch" type="xml">
+            <field name="so_ngay_thuc_hien" position="after">
+                <field name="tien_do_pct" widget="progressbar" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_nhiem_vu_tree_inherit_tien_do_pct" model="ir.ui.view">
+        <field name="name">nhiem.vu.tree.inherit.tien.do.pct</field>
+        <field name="model">nhiem_vu</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_nhiem_vu_tree"/>
+        <field name="arch" type="xml">
+            <field name="so_ngay_thuc_hien" position="after">
+                <field name="tien_do_pct" widget="progressbar"/>
+            </field>
+        </field>
+    </record>
+</odoo>
+

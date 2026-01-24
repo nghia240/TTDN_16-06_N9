@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nhan_vien_form_inherit_muc_tieu" model="ir.ui.view">
+        <field name="name">nhan.vien.form.inherit.muc.tieu</field>
+        <field name="model">nhan_vien</field>
+        <field name="inherit_id" ref="nhan_su.view_nhan_vien_form"/>
+        <field name="arch" type="xml">
+            <!-- Thêm thống kê vào phần đầu form (nếu có group) -->
+            <xpath expr="//sheet" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_muc_tieu" type="object" class="oe_stat_button" icon="fa-bullseye">
+                        <field name="so_muc_tieu" widget="statinfo" string="Mục tiêu"/>
+                    </button>
+                    <button type="action" class="oe_stat_button" icon="fa-tasks"
+                            name="%(quan_ly_cong_viec.action_cong_viec)d">
+                        <field name="so_cong_viec" widget="statinfo" string="Công việc"/>
+                    </button>
+                    <button type="action" class="oe_stat_button" icon="fa-line-chart"
+                            name="%(quan_ly_cong_viec.action_danh_gia_cong_viec)d">
+                        <field name="tien_do_trung_binh" widget="statinfo" string="Tiến độ TB"/>
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

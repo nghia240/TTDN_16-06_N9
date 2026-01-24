@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kế thừa form dự án để hiển thị công việc liên quan (field do module này thêm) -->
+    <record id="view_du_an_form_inherit_cong_viec" model="ir.ui.view">
+        <field name="name">du.an.form.inherit.cong.viec</field>
+        <field name="model">du_an</field>
+        <field name="inherit_id" ref="quan_ly_du_an.view_du_an_form"/>
+        <field name="arch" type="xml">
+            <!-- Thêm field đếm số công việc vào nhóm thống kê -->
+            <field name="so_luong_nhan_vien" position="after">
+                <field name="so_luong_cong_viec" readonly="1"/>
+            </field>
+
+            <!-- Thêm tab Công việc liên quan -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Công việc liên quan">
+                    <field name="cong_viec_ids">
+                        <tree>
+                            <field name="ten_cong_viec"/>
+                            <field name="nhan_vien_id"/>
+                            <field name="trang_thai"/>
+                            <field name="tien_do"/>
+                            <field name="han_hoan_thanh"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

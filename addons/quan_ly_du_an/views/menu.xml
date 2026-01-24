@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <menuitem
-            id="menu_root"
-            name="Quản lý dự án"
-            sequence="0"/>
-          
-        <menuitem name="Quản lý dự án" 
-            id="menu_du_an" 
-            parent="menu_root" 
-            sequence="1"
-            action="action_du_an" />
-            
-        <menuitem name="Quản lý nhiệm vụ" 
-            id="menu_nhiem_vu" 
-            parent="menu_root" 
-            sequence="2"
-            action="action_nhiem_vu" /> 
 
-        <menuitem name="Thời gian làm việc" 
-            id="menu_thoi_gian_lam_viec" 
-            parent="menu_root" 
-            sequence="3"
-            action="action_thoi_gian_lam_viec" />      
+    <!-- ================= ROOT MENU ================= -->
+    <menuitem id="menu_root"
+              name="Quản lý dự án"
+              sequence="10"/>
 
-        <menuitem name="Quản lý tiến độ" 
-            id="menu_tien_do" 
-            parent="menu_root" 
-            sequence="4"
-            action="action_tien_do" />    
+    <!-- ================= DỰ ÁN ================= -->
+    <menuitem id="menu_du_an_root"
+              name="Dự án"
+              parent="menu_root"
+              sequence="1"/>
 
-        <menuitem name="Quản lý rủi ro" 
-            id="menu_rui_ro" 
-            parent="menu_root" 
-            sequence="5"
-            action="action_rui_ro" />     
+    <menuitem id="menu_du_an"
+              name="Danh sách dự án"
+              parent="menu_du_an_root"
+              action="action_du_an"
+              sequence="1"/>
 
-        <menuitem name="Quản lý trễ hạn" 
-            id="menu_tre_han" 
-            parent="menu_root" 
-            sequence="6"
-            action="action_tre_han" />  
+    <menuitem id="menu_nhiem_vu"
+              name="Quản lý nhiệm vụ"
+              parent="menu_du_an_root"
+              action="action_nhiem_vu"
+              sequence="2"/>
 
-        
-       
-       <menuitem id="menu_dashboard" name="Dashboard" parent="menu_root"/>
-        <menuitem id="menu_dashboard_trang_thai" name="Thống kê Trạng Thái" action="action_dashboard_trang_thai" parent="menu_dashboard"/>
-        <menuitem id="menu_dashboard_uu_tien" name="Thống kê Mức Độ Ưu Tiên" action="action_dashboard_uu_tien" parent="menu_dashboard"/>
-    </data>
+    <menuitem id="menu_thoi_gian_lam_viec"
+              name="Thời gian làm việc"
+              parent="menu_du_an_root"
+              action="action_thoi_gian_lam_viec"
+              sequence="3"/>
+
+    <menuitem id="menu_tien_do"
+              name="Quản lý tiến độ"
+              parent="menu_du_an_root"
+              action="action_tien_do"
+              sequence="4"/>
+
+    <menuitem id="menu_rui_ro"
+              name="Quản lý rủi ro"
+              parent="menu_du_an_root"
+              action="action_rui_ro"
+              sequence="5"/>
+
+    <menuitem id="menu_tre_han"
+              name="Quản lý trễ hạn"
+              parent="menu_du_an_root"
+              action="action_tre_han"
+              sequence="6"/>
+
+    <!-- ================= DASHBOARD ================= -->
+    <menuitem id="menu_dashboard_root"
+              name="Dashboard"
+              parent="menu_root"
+              sequence="20"/>
+
+    <menuitem id="menu_dashboard_trang_thai"
+              name="Thống kê trạng thái"
+              parent="menu_dashboard_root"
+              action="action_dashboard_trang_thai"
+              sequence="1"/>
+
+    <menuitem id="menu_dashboard_uu_tien"
+              name="Thống kê mức độ ưu tiên"
+              parent="menu_dashboard_root"
+              action="action_dashboard_uu_tien"
+              sequence="2"/>
+
 </odoo>

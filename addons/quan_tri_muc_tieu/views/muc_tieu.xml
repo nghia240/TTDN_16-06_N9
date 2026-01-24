@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================= FORM VIEW ================= -->
+    <record id="view_muc_tieu_form" model="ir.ui.view">
+        <field name="name">muc.tieu.form</field>
+        <field name="model">muc_tieu</field>
+        <field name="arch" type="xml">
+            <form string="Mục tiêu">
+                <header>
+                    <button name="action_draft" type="object" string="Nháp" states="dang_thuc_hien,hoan_thanh,huy"/>
+                    <button name="action_start" type="object" string="Bắt đầu" states="nhap" class="btn-primary"/>
+                    <button name="action_done" type="object" string="Hoàn thành" states="dang_thuc_hien" class="btn-success"/>
+                    <button name="action_cancel" type="object" string="Hủy" states="nhap,dang_thuc_hien"/>
+                    <field name="trang_thai" widget="statusbar" readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nhan_vien_id"/>
+                            <field name="du_an_id"/>
+                        </group>
+                        <group>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="tien_do" widget="progressbar" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="mo_ta"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Chi tiết mục tiêu">
+                            <field name="dong_ids" context="{'default_nhan_vien_id': nhan_vien_id, 'default_muc_tieu_id': active_id}">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="nhan_vien_id"/>
+                                    <field name="nhiem_vu_id"/>
+                                    <field name="cong_viec_id"/>
+                                    <field name="cong_viec_con_id"/>
+                                    <field name="trong_so"/>
+                                    <field name="tien_do_thuc_te" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= TREE VIEW ================= -->
+    <record id="view_muc_tieu_tree" model="ir.ui.view">
+        <field name="name">muc.tieu.tree</field>
+        <field name="model">muc_tieu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nhan_vien_id"/>
+                <field name="du_an_id"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="tien_do" widget="progressbar"/>
+                <field name="trang_thai"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ================= SEARCH VIEW ================= -->
+    <record id="view_muc_tieu_search" model="ir.ui.view">
+        <field name="name">muc.tieu.search</field>
+        <field name="model">muc_tieu</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="nhan_vien_id"/>
+                <field name="du_an_id"/>
+                <field name="trang_thai"/>
+                <filter string="Đang thực hiện" name="dang_thuc_hien" domain="[('trang_thai','=','dang_thuc_hien')]"/>
+                <filter string="Hoàn thành" name="hoan_thanh" domain="[('trang_thai','=','hoan_thanh')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================= ACTION ================= -->
+    <record id="action_muc_tieu" model="ir.actions.act_window">
+        <field name="name">Mục tiêu</field>
+        <field name="res_model">muc_tieu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_muc_tieu_search"/>
+    </record>
+
+</odoo>
+

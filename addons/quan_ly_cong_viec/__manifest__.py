@@ -1,38 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "quan_ly_cong_viec",
-
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-
+    'name': "Quản lý công việc",
+    'summary': "Hệ thống quản lý công việc, công việc con, ghi nhận thời gian và đánh giá",
     'description': """
-        Quản Lý công việc
+        Module quản lý công việc bao gồm:
+        - Quản lý công việc và công việc con
+        - Ghi nhận thời gian làm việc
+        - Đánh giá công việc (KPI)
+        - Liên kết với dự án và nhiệm vụ
     """,
-
     'author': "phuccthuan",
     'website': "http://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
+    'category': 'Project',
     'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
-
-    # always loaded
+    'depends': ['base', 'nhan_su', 'quan_ly_du_an'],
     'data': [
         'security/ir.model.access.csv',
         'views/cong_viec.xml',
         'views/cong_viec_con.xml',
         'views/ghi_nhan_thoi_gian.xml',
         'views/danh_gia_cong_viec.xml',
+        'views/du_an_inherit.xml',
+        'views/nhiem_vu_inherit.xml',
         'views/menu.xml',
     ],
-    # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': True,
 }

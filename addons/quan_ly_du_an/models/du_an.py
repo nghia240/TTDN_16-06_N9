@@ -1,101 +1,102 @@
+# -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
-import json
+from odoo.exceptions import ValidationError
+
 
 class DuAn(models.Model):
     _name = 'du_an'
     _description = 'Quản lý dự án'
 
-    ten_du_an = fields.Char("Tên dự án", required=True)
-    ngan_sach = fields.Float("Ngân sách dự án", required=True)
-    ngay_bat_dau = fields.Date("Ngày bắt đầu", required=True)
-    ngay_ket_thuc = fields.Date("Ngày kết thúc", required=True)
-    mo_ta = fields.Text("Mô tả chi tiết dự án")
+    ten_du_an = fields.Char(required=True, string="Tên dự án")
+    ngan_sach = fields.Float(required=True, string="Ngân sách")
+    ngay_bat_dau = fields.Date(required=True, string="Ngày bắt đầu")
+    ngay_ket_thuc = fields.Date(required=True, string="Ngày kết thúc")
+    mo_ta = fields.Text(string="Mô tả")
 
-    nhiem_vu_ids = fields.One2many("nhiem_vu", "du_an_id", string="Nhiệm vụ dự án")
-    tien_do_ids = fields.One2many("tien_do", "du_an_id", string="Tiến Độ Dự Án")
+    nhan_vien_ids = fields.Many2many('nhan_vien', string="Nhân viên")
+
+    nhiem_vu_ids = fields.One2many('nhiem_vu', 'du_an_id', string="Nhiệm vụ")
 
     trang_thai = fields.Selection([
         ('dang_thuc_hien', 'Đang thực hiện'),
         ('hoan_thanh', 'Hoàn thành'),
-        ('tam_dung', 'Tạm dừng'),
         ('huy_bo', 'Hủy bỏ')
-    ], string="Trạng thái", default="dang_thuc_hien", compute="_compute_trang_thai", store=True)
+    ], compute='_compute_trang_thai', store=True)
 
-    @api.depends("nhiem_vu_ids.trang_thai")
-    def _compute_trang_thai(self):
-        for record in self:
-            if not record.nhiem_vu_ids:
-                continue
-
-            trang_thai_nhiem_vu = record.nhiem_vu_ids.mapped("trang_thai")
-
-            if all(trang_thai == "hoan_thanh" for trang_thai in trang_thai_nhiem_vu):
-                record.trang_thai = "hoan_thanh"
-            elif any(trang_thai == "dang_thuc_hien" for trang_thai in trang_thai_nhiem_vu):
-                record.trang_thai = "dang_thuc_hien"
-            elif all(trang_thai == "huy_bo" for trang_thai in trang_thai_nhiem_vu):
-                record.trang_thai = "huy_bo"
-            else:
-                record.trang_thai = "dang_thuc_hien"
-
+    tien_do_du_an = fields.Float(
+        string="Tiến độ (%)",
+        compute="_compute_tien_do",
+        store=True
+    )
+    
     muc_uu_tien = fields.Selection([
         ('thap', 'Thấp'),
         ('trung_binh', 'Trung bình'),
         ('cao', 'Cao'),
-        ('khan_cap', 'Khẩn cấp')
-    ], string="Mức ưu tiên", default="thap")
-
-    nhan_vien_ids = fields.Many2many(
-        'nhan_vien',
-        'du_an_nhan_vien_rel',
-        'du_an_id',
-        'nhan_vien_id',
-        string="Nhân viên thực hiện"
-    )
-
-    so_luong_nhan_vien = fields.Integer(
-        "Số người phụ trách", compute="_tinh_so_luong_nhan_vien", store=True
-    )
-
-    @api.depends("nhan_vien_ids")
-    def _tinh_so_luong_nhan_vien(self):
-        for record in self:
-            record.so_luong_nhan_vien = len(record.nhan_vien_ids)
-
+        ('rat_cao', 'Rất cao')
+    ], string="Mức ưu tiên", default='trung_binh')
+    
     so_luong_nhiem_vu = fields.Integer(
-        "Số nhiệm vụ", compute="_compute_so_luong_nhiem_vu", store=True
+        string="Số lượng nhiệm vụ",
+        compute="_compute_so_luong_nhiem_vu",
+        store=True
     )
-
-    @api.depends("nhiem_vu_ids")
-    def _compute_so_luong_nhiem_vu(self):
-        for record in self:
-            record.so_luong_nhiem_vu = len(record.nhiem_vu_ids)
-
-    def name_get(self):
-        result = []
-        for record in self:
-            name = f"{record.ten_du_an} "
-            result.append((record.id, name))
-        return result
-
-    tien_do_du_an = fields.Float(string="Tiến Độ Dự Án (%)", compute="_compute_tien_do_du_an", store=True)
+    
+    so_luong_nhan_vien = fields.Integer(
+        string="Số lượng nhân viên",
+        compute="_compute_so_luong_nhan_vien",
+        store=True
+    )
 
     @api.depends('nhiem_vu_ids.trang_thai')
-    def _compute_tien_do_du_an(self):
-        for record in self:
-            nhiem_vu_count = len(record.nhiem_vu_ids)
-            if nhiem_vu_count > 0:
-                hoan_thanh_count = sum(1 for nv in record.nhiem_vu_ids if nv.trang_thai == 'hoan_thanh')
-                record.tien_do_du_an = (hoan_thanh_count / nhiem_vu_count) * 100
+    def _compute_trang_thai(self):
+        """Tính trạng thái dự án dựa trên trạng thái các nhiệm vụ"""
+        for rec in self:
+            if not rec.nhiem_vu_ids:
+                rec.trang_thai = 'dang_thuc_hien'
+            elif all(nv.trang_thai == 'hoan_thanh' for nv in rec.nhiem_vu_ids):
+                rec.trang_thai = 'hoan_thanh'
+            elif all(nv.trang_thai == 'huy_bo' for nv in rec.nhiem_vu_ids):
+                rec.trang_thai = 'huy_bo'
             else:
-                record.tien_do_du_an = 0.0
+                rec.trang_thai = 'dang_thuc_hien'
 
-    @api.model
-    def get_trang_thai_du_an_data(self):
-        data = self.read_group([], ['trang_thai'], ['trang_thai'])
-        return json.dumps(data)
+    @api.depends('nhiem_vu_ids.trang_thai')
+    def _compute_tien_do(self):
+        """Tính tiến độ dự án dựa trên tỷ lệ nhiệm vụ hoàn thành"""
+        for rec in self:
+            total = len(rec.nhiem_vu_ids)
+            done = len(rec.nhiem_vu_ids.filtered(lambda x: x.trang_thai == 'hoan_thanh'))
+            rec.tien_do_du_an = (done / total * 100) if total else 0
     
-    @api.model
-    def get_muc_uu_tien_data(self):
-        data = self.read_group([], ['muc_uu_tien'], ['muc_uu_tien'])
-        return json.dumps(data)
+    @api.depends('nhiem_vu_ids')
+    def _compute_so_luong_nhiem_vu(self):
+        """Tính số lượng nhiệm vụ trong dự án"""
+        for rec in self:
+            rec.so_luong_nhiem_vu = len(rec.nhiem_vu_ids)
+    
+    @api.depends('nhan_vien_ids')
+    def _compute_so_luong_nhan_vien(self):
+        """Tính số lượng nhân viên tham gia dự án"""
+        for rec in self:
+            rec.so_luong_nhan_vien = len(rec.nhan_vien_ids)
+
+    @api.constrains('ngay_bat_dau', 'ngay_ket_thuc')
+    def _check_ngay_thang(self):
+        """Kiểm tra ngày kết thúc phải sau ngày bắt đầu"""
+        for rec in self:
+            if rec.ngay_ket_thuc and rec.ngay_bat_dau:
+                if rec.ngay_ket_thuc < rec.ngay_bat_dau:
+                    raise ValidationError("Ngày kết thúc phải sau ngày bắt đầu!")
+
+    @api.constrains('ngan_sach')
+    def _check_ngan_sach(self):
+        """Kiểm tra ngân sách phải lớn hơn 0"""
+        for rec in self:
+            if rec.ngan_sach < 0:
+                raise ValidationError("Ngân sách phải lớn hơn hoặc bằng 0!")
+
+    def name_get(self):
+        """Hiển thị tên dự án"""
+        return [(rec.id, rec.ten_du_an) for rec in self]

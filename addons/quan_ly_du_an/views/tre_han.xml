@@ -3,7 +3,7 @@
         <field name="name">tre.han.tree</field>
         <field name="model">tre_han</field>
         <field name="arch" type="xml">
-            <tree string="Danh Sách Trễ Hạn">
+            <tree string="Danh sách trễ hạn">
                 <field name="nhiem_vu_id"/>
                 <field name="du_an_id"/>
                 <field name="han_chot"/>
@@ -17,7 +17,7 @@
         <field name="name">tre.han.form</field>
         <field name="model">tre_han</field>
         <field name="arch" type="xml">
-            <form string="Chi Tiết Trễ Hạn">
+            <form string="Chi tiết trễ hạn">
                 <sheet>
                     <group>
                         <field name="nhiem_vu_id"/>
@@ -33,10 +33,10 @@
     </record>
 
     <record id="action_tre_han" model="ir.actions.act_window">
-        <field name="name">Trễ Hạn</field>
+        <field name="name">Trễ hạn</field>
         <field name="res_model">tre_han</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_tre_han" name="Trễ Hạn" parent="menu_du_an" action="action_tre_han"/>
+   
 </odoo>

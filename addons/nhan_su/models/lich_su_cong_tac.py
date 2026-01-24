@@ -1,17 +1,31 @@
+# -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class LichSuCongTac(models.Model):
     _name = 'lich_su_cong_tac'
     _description = 'Bảng chứa thông tin lịch sử công tác'
 
-    nhan_vien_id = fields.Many2one("nhan_vien",string="Nhân viên", required=True)
-    phong_ban_id = fields.Many2one("phong_ban",string="Phòng ban", required=True)
-    chuc_vu_id = fields.Many2one("Chuc_vu",string="Chức vụ", required=True)
+    nhan_vien_id = fields.Many2one("nhan_vien", string="Nhân viên", required=True)
+    phong_ban_id = fields.Many2one("phong_ban", string="Phòng ban", required=True)
+    chuc_vu_id = fields.Many2one("chuc_vu", string="Chức vụ", required=True)
+    ngay_bat_dau = fields.Date("Ngày bắt đầu", required=True, default=fields.Date.today)
+    ngay_ket_thuc = fields.Date("Ngày kết thúc")
     loai_chuc_vu = fields.Selection(
         [
-        ("Chính", "Chính"),
-        ("Kiêm nhiệm", "Kiêm nhiệm"),
+            ("Chính", "Chính"),
+            ("Kiêm nhiệm", "Kiêm nhiệm"),
         ],
-        string="Loại chức vụ", default ="Chính"
+        string="Loại chức vụ",
+        default="Chính"
     )
+
+    @api.constrains('ngay_bat_dau', 'ngay_ket_thuc')
+    def _check_ngay_thang(self):
+        """Kiểm tra ngày kết thúc phải sau ngày bắt đầu"""
+        for rec in self:
+            if rec.ngay_ket_thuc and rec.ngay_bat_dau:
+                if rec.ngay_ket_thuc < rec.ngay_bat_dau:
+                    raise ValidationError("Ngày kết thúc phải sau ngày bắt đầu!")

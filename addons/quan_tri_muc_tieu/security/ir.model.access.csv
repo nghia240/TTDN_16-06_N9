@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_muc_tieu,access_muc_tieu,model_muc_tieu,,1,1,1,1
+access_muc_tieu_dong,access_muc_tieu_dong,model_muc_tieu_dong,,1,1,1,1
+

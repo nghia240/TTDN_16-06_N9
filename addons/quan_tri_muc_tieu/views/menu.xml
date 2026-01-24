@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_quan_tri_muc_tieu_root"
+              name="Quản trị mục tiêu"
+              sequence="90"/>
+
+    <menuitem id="menu_muc_tieu"
+              name="Mục tiêu"
+              parent="menu_quan_tri_muc_tieu_root"
+              action="action_muc_tieu"
+              sequence="10"/>
+</odoo>
+

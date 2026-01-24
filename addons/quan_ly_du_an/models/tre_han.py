@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
+
 
 class TreHan(models.Model):
     _name = "tre_han"
@@ -15,19 +18,19 @@ class TreHan(models.Model):
 
     @api.depends("nhiem_vu_id")
     def _compute_han_chot(self):
-        """ Lấy hạn chót từ nhiệm vụ """
+        """Lấy hạn chót từ nhiệm vụ"""
         for record in self:
             record.han_chot = record.nhiem_vu_id.han_chot if record.nhiem_vu_id else False
 
     @api.depends("nhiem_vu_id")
     def _compute_du_an_id(self):
-        """ Lấy dự án từ nhiệm vụ """
+        """Lấy dự án từ nhiệm vụ"""
         for record in self:
             record.du_an_id = record.nhiem_vu_id.du_an_id if record.nhiem_vu_id else False
 
     @api.depends("han_chot", "ngay_hien_tai")
     def _compute_so_ngay_tre(self):
-        """ Tính số ngày trễ """
+        """Tính số ngày trễ"""
         for record in self:
             if record.han_chot:
                 record.so_ngay_tre = (record.ngay_hien_tai - record.han_chot).days
@@ -36,7 +39,7 @@ class TreHan(models.Model):
 
     @api.depends("so_ngay_tre")
     def _compute_canh_bao(self):
-        """ Đánh dấu cảnh báo nếu trễ hạn """
+        """Đánh dấu cảnh báo nếu trễ hạn"""
         for record in self:
             record.canh_bao = record.so_ngay_tre > 0
 

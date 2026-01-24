@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <menuitem
-            id="menu_root"
-            name="Quản lý công việc"
-            sequence="0"/>
-          
-        <menuitem name="Công việc" 
-            id="menu_cong_viec" 
-            parent="menu_root" 
-            sequence="1"
-            action="action_cong_viec" />
+        <!-- ================= ROOT MENU ================= -->
+        <menuitem id="menu_root"
+                  name="Quản lý công việc"
+                  sequence="15"/>
 
-        <menuitem name="Công việc con" 
-            id="menu_cong_viec_con" 
-            parent="menu_root" 
-            sequence="2"
-            action="action_cong_viec_con" />
+        <!-- ================= CÔNG VIỆC ================= -->
+        <menuitem id="menu_cong_viec_root"
+                  name="Công việc"
+                  parent="menu_root"
+                  sequence="1"/>
 
-        <menuitem name="Thời gian làm việc" 
-            id="menu_ghi_nhan_thoi_gian" 
-            parent="menu_root" 
-            sequence="3"
-            action="action_ghi_nhan_thoi_gian" />
+        <menuitem id="menu_cong_viec"
+                  name="Danh sách công việc"
+                  parent="menu_cong_viec_root"
+                  action="action_cong_viec"
+                  sequence="1"/>
 
-        <menuitem name="Đánh giá công việc" 
-            id="menu_danh_gia_cong_viec" 
-            parent="menu_root" 
-            sequence="4"
-            action="action_danh_gia_cong_viec" />
-       
+        <menuitem id="menu_cong_viec_con"
+                  name="Công việc con"
+                  parent="menu_cong_viec_root"
+                  action="action_cong_viec_con"
+                  sequence="2"/>
+
+        <!-- ================= THEO DÕI ================= -->
+        <menuitem id="menu_theo_doi_root"
+                  name="Theo dõi"
+                  parent="menu_root"
+                  sequence="2"/>
+
+        <menuitem id="menu_ghi_nhan_thoi_gian"
+                  name="Ghi nhận thời gian"
+                  parent="menu_theo_doi_root"
+                  action="action_ghi_nhan_thoi_gian"
+                  sequence="1"/>
+
+        <menuitem id="menu_danh_gia_cong_viec"
+                  name="Đánh giá công việc"
+                  parent="menu_theo_doi_root"
+                  action="action_danh_gia_cong_viec"
+                  sequence="2"/>
     </data>
 </odoo>

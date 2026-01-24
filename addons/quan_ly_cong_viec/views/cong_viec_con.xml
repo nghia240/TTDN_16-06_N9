@@ -10,6 +10,7 @@
                         <div class="oe_read_only" style="font-size:25px">Công việc con</div>
                         <group col="4" string="Thông tin chung">
                             <field name="cong_viec_id"/>
+                            <field name="nhiem_vu_id"/>
                             <field name="nhan_vien_id"/>
                             <field name="ten_cong_viec_con"/>
                             <field name="trang_thai"/>
@@ -28,12 +29,12 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="cong_viec_id"/>
+                    <field name="nhiem_vu_id"/>
                     <field name="nhan_vien_id"/>
                     <field name="ten_cong_viec_con"/>
                     <field name="trang_thai"/>
                     <field name="han_hoan_thanh"/>
                     <field name="tien_do"/>
-                    <field name="mo_ta"/>
                 </tree>
             </field>
         </record>
@@ -43,12 +44,12 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="cong_viec_id"/>
+                    <field name="nhiem_vu_id"/>
                     <field name="nhan_vien_id"/>
                     <field name="ten_cong_viec_con"/>
                     <field name="trang_thai"/>
                     <field name="han_hoan_thanh"/>
                     <field name="tien_do"/>
-                    <field name="mo_ta"/>
                 </search>
             </field>
         </record>
