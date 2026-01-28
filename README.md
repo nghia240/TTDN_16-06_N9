@@ -278,16 +278,6 @@ Chúng tôi hoan nghênh mọi đóng góp:
 4. Push lên GitHub
 5. Tạo Pull Request
 
----
-
-## 👤 Tác giả
-
-**phuccthuan**
-
-* GitHub: [https://github.com/your-username](https://github.com/your-username)
-* Email: [your-email@example.com](mailto:your-email@example.com)
-
----
 
 ## 📚 Tài liệu tham khảo
 
