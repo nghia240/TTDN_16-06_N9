@@ -154,10 +154,6 @@ odoo15-project-management/
 │   ├── nhan_su/
 │   ├── quan_ly_du_an/
 │   └── quan_ly_cong_viec/
-├── CHUONG_1_BAO_CAO.md
-├── CHUONG_2_BAO_CAO.md
-├── CHUONG_3_BAO_CAO.md
-├── KET_LUAN_BAO_CAO.md
 ├── README.md
 └── LICENSE
 ```
