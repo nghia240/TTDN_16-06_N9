@@ -1,94 +1,310 @@
-Hệ thống quản lý dự án
+# 🚀 Hệ thống Quản lý Dự án, Công việc và Nhân sự trên Odoo 15
 
+[![Odoo Version](https://img.shields.io/badge/Odoo-15.0-blue)](https://www.odoo.com/)
+[![Python Version](https://img.shields.io/badge/Python-3.8%2B-green)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](https://github.com)
 
-![image](https://github.com/user-attachments/assets/6a147d32-42c7-4954-a616-28a16fafcff6)
-1. Dự án
-![image](https://github.com/user-attachments/assets/aea65e86-259f-45f2-82aa-0de339856700)
-2. Quản lý nhiệm vụ
-![image](https://github.com/user-attachments/assets/fc01d55f-4484-4fc7-b4f7-b20be50bc4cb)
-3. Thời gian làm việc
-![image](https://github.com/user-attachments/assets/8520454e-b269-4e8a-8a5e-f05b5ffe163b)
-4. Tiến độ công việc
- ![image](https://github.com/user-attachments/assets/fd9e307b-f3b3-4e86-b269-0ebea3cb8e4a)
-5. Rủi do dự án
-![image](https://github.com/user-attachments/assets/48ff191e-e43a-431e-8e1a-6b43e14e7772)
-6. Dự án trễ hạn
-![image](https://github.com/user-attachments/assets/da1ea825-7a2a-4f1e-acf6-5f27e2c44c98)
-7. Dashboard
-![image](https://github.com/user-attachments/assets/4f2866c2-115e-4305-8033-6a5ef32b3f74)
-![image](https://github.com/user-attachments/assets/656cc7e9-1bf3-4ce0-86aa-fc5f7d72f26f)
-
+> Hệ thống quản lý dự án, công việc và nhân sự tích hợp trên nền tảng Odoo 15, hỗ trợ quản trị mục tiêu và theo dõi hiệu quả cá nhân.
 
 ---
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+## 📋 Mục lục
 
+* [Giới thiệu](#-giới-thiệu)
+* [Tính năng chính](#-tính-năng-chính)
+* [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
+* [Cài đặt](#-cài-đặt)
+* [Cấu trúc dự án](#-cấu-trúc-dự-án)
+* [Hướng dẫn sử dụng](#-hướng-dẫn-sử-dụng)
+* [Screenshots](#-screenshots)
+* [Modules](#-modules)
+* [Đóng góp](#-đóng-góp)
+* [Tác giả](#-tác-giả)
+* [Tài liệu tham khảo](#-tài-liệu-tham-khảo)
+* [License](#-license)
 
+---
 
-# 1. Cài đặt công cụ, môi trường và các thư viện cần thiết
+## 🎯 Giới thiệu
 
-## 1.1. Clone project.
+Hệ thống được xây dựng nhằm giải quyết các thách thức trong quản lý dự án và nhân sự tại doanh nghiệp:
+
+* **Quản trị mục tiêu**: Chia nhỏ dự án thành các tác vụ để theo dõi tiến độ
+* **Theo dõi hiệu quả**: Đánh giá hiệu suất thông qua KPI và thời gian làm việc
+* **Tích hợp thống nhất**: Các module liên kết chặt chẽ, đảm bảo dữ liệu nhất quán
+
+### 🌟 Đặc điểm nổi bật
+
+#### ✨ Tự động hóa thông minh
+
+* Tự động tính tiến độ dự án
+* Cảnh báo nhiệm vụ trễ hạn
+* Tự động điền dữ liệu
+
+#### 📊 Dashboard trực quan
+
+* Biểu đồ trạng thái dự án
+* Biểu đồ mức độ ưu tiên
+* Thanh tiến độ (Progress Bar)
+
+#### 🔗 Tích hợp chặt chẽ
+
+* Liên kết qua inheritance & dependencies
+* Chia sẻ dữ liệu, hạn chế trùng lặp
+
+---
+
+## ✨ Tính năng chính
+
+### 👥 Module Quản lý Nhân sự
+
+* ✅ Quản lý thông tin nhân viên
+* ✅ Quản lý phòng ban, chức vụ
+* ✅ Lịch sử công tác
+* ✅ Validation dữ liệu
+
+### 📁 Module Quản lý Dự án
+
+* ✅ Quản lý dự án (ngân sách, thời gian, ưu tiên)
+* ✅ Quản lý nhiệm vụ
+* ✅ Tính tiến độ tự động
+* ✅ Quản lý rủi ro
+* ✅ Cảnh báo trễ hạn
+* ✅ Dashboard thống kê
+
+### 📝 Module Quản lý Công việc
+
+* ✅ Quản lý công việc & công việc con
+* ✅ Ghi nhận thời gian
+* ✅ Đánh giá KPI
+* ✅ Tích hợp dự án
+* ✅ Tính tiến độ tự động
+
+---
+
+## 💻 Yêu cầu hệ thống
+
+* **Python**: ≥ 3.8
+* **PostgreSQL**: ≥ 12
+* **Odoo**: 15.0 Community
+* **Hệ điều hành**: Linux / macOS / Windows (WSL)
+
+### Dependencies
+
+* Core: `base`, `mail`, `web`, `board`
+* Python: Theo `requirements.txt` của Odoo
+
+---
+
+## 🚀 Cài đặt
+
+### Bước 1: Clone repository
+
+```bash
+git clone https://github.com/your-username/odoo15-project-management.git
+cd odoo15-project-management
 ```
-git clone https://gitlab.com/anhlta/odoo-fitdnu.git
-```
 
-```
-git checkout cntt15_04
-```
+### Bước 2: Cài đặt Odoo 15
 
+Tham khảo tài liệu chính thức của Odoo.
 
-## 1.2. cài đặt các thư viện cần thiết
+### Bước 3: Cấu hình Odoo
 
-Người sử dụng thực thi các lệnh sau đề cài đặt các thư viện cần thiết
+File `odoo.conf`:
 
-```
-sudo apt-get install libxml2-dev libxslt-dev libldap2-dev libsasl2-dev libssl-dev python3.10-distutils python3.10-dev build-essential libssl-dev libffi-dev zlib1g-dev python3.10-venv libpq-dev
-```
-## 1.3. khởi tạo môi trường ảo.
-
-`python3.10 -m venv ./venv`
-Thay đổi trình thông dịch sang môi trường ảo và chạy requirements.txt để cài đặt tiếp các thư viện được yêu cầu
-
-```
-source venv/bin/activate
-pip3 install -r requirements.txt
-```
-
-# 2. Setup database
-
-Khởi tạo database trên docker bằng việc thực thi file dockercompose.yml.
-
-`docker-compose up -d`
-
-# 3. Setup tham số chạy cho hệ thống
-
-## 3.1. Khởi tạo odoo.conf
-
-Tạo tệp **odoo.conf** có nội dung như sau:
-
-```
+```ini
 [options]
-addons_path = addons
-db_host = localhost
-db_password = odoo
-db_user = odoo
-db_port = 5434
-xmlrpc_port = 8069
+addons_path = /path/to/odoo/addons,/path/to/odoo15-project-management/addons
 ```
 
-# 4. Chạy hệ thống và cài đặt các ứng dụng cần thiết
+### Bước 4: Khởi động Odoo
 
-Lệnh chạy
+```bash
+./odoo-bin -c odoo.conf
 ```
-python3 odoo-bin.py -c odoo.conf -u all
+
+### Bước 5: Cài đặt module
+
+1. Truy cập: `http://localhost:8069`
+2. Đăng nhập Admin
+3. Vào **Apps → Update Apps List**
+4. Cài theo thứ tự:
+
+   * `nhan_su`
+   * `quan_ly_du_an`
+   * `quan_ly_cong_viec`
+
+> ⚠️ Cần cài đúng thứ tự để tránh lỗi dependencies.
+
+### Bước 6: Upgrade module
+
+```bash
+./odoo-bin -c odoo.conf -u nhan_su,quan_ly_du_an,quan_ly_cong_viec -d database_name
 ```
 
+---
 
-Người sử dụng truy cập theo đường dẫn _http://localhost:8069/_ để đăng nhập vào hệ thống.
+## 📁 Cấu trúc dự án
 
-Hoàn tất
-    
+```
+odoo15-project-management/
+├── addons/
+│   ├── nhan_su/
+│   ├── quan_ly_du_an/
+│   └── quan_ly_cong_viec/
+├── CHUONG_1_BAO_CAO.md
+├── CHUONG_2_BAO_CAO.md
+├── CHUONG_3_BAO_CAO.md
+├── KET_LUAN_BAO_CAO.md
+├── README.md
+└── LICENSE
+```
+
+---
+
+## 📖 Hướng dẫn sử dụng
+
+### Quy trình quản lý dự án
+
+#### 1. Tạo dự án
+
+* Quản lý dự án → Dự án → Create
+* Nhập thông tin cơ bản
+
+#### 2. Tạo nhiệm vụ
+
+* Tab **Nhiệm vụ** → Add a line
+* Gán người phụ trách
+
+#### 3. Tạo công việc
+
+* Quản lý công việc → Công việc → Create
+* Liên kết dự án
+
+#### 4. Ghi nhận thời gian
+
+* Theo dõi → Ghi nhận thời gian
+* Nhập số giờ làm việc
+
+#### 5. Đánh giá KPI
+
+* Theo dõi → Đánh giá công việc
+* Nhập KPI, nhận xét
+
+### Xem thống kê
+
+* Quản lý dự án → Dashboard
+* Xem biểu đồ tổng hợp
+
+### Quản lý trễ hạn
+
+* Quản lý dự án → Quản lý trễ hạn
+* Theo dõi và xử lý kịp thời
+
+---
+
+## 📸 Screenshots
+
+```
+screenshots/
+├── dashboard.png
+├── danh_sach_du_an.png
+├── form_du_an.png
+├── danh_sach_nhiem_vu.png
+├── form_nhiem_vu.png
+├── danh_sach_cong_viec.png
+├── ghi_nhan_thoi_gian.png
+├── danh_sach_nhan_vien.png
+├── lich_su_cong_tac.png
+```
+
+> 📝 Hãy chụp ảnh thực tế và lưu trong thư mục `screenshots/`.
+
+---
+
+## 📦 Modules
+
+### 🧩 nhan_su
+
+**Chức năng:** Quản lý nhân viên
+
+**Models:**
+
+* nhan_vien
+* phong_ban
+* chuc_vu
+* lich_su_cong_tac
+
+**Dependencies:** `base`
+
+---
+
+### 🧩 quan_ly_du_an
+
+**Chức năng:** Quản lý dự án, nhiệm vụ
+
+**Models:**
+
+* du_an
+* nhiem_vu
+* tien_do
+* rui_ro
+* tre_han
+
+**Dependencies:** `base`, `mail`, `web`, `board`, `nhan_su`
+
+---
+
+### 🧩 quan_ly_cong_viec
+
+**Chức năng:** Quản lý công việc, KPI
+
+**Models:**
+
+* cong_viec
+* cong_viec_con
+* ghi_nhan_thoi_gian
+* danh_gia_cong_viec
+
+**Dependencies:** `base`, `nhan_su`, `quan_ly_du_an`
+
+---
+
+## 🤝 Đóng góp
+
+Chúng tôi hoan nghênh mọi đóng góp:
+
+1. Fork project
+2. Tạo branch mới
+3. Commit thay đổi
+4. Push lên GitHub
+5. Tạo Pull Request
+
+---
+
+## 👤 Tác giả
+
+**phuccthuan**
+
+* GitHub: [https://github.com/your-username](https://github.com/your-username)
+* Email: [your-email@example.com](mailto:your-email@example.com)
+
+---
+
+## 📚 Tài liệu tham khảo
+
+1. Odoo Documentation (15.0)
+2. Python Documentation
+3. PostgreSQL Documentation
+4. Git & GitHub Docs
+5. Stack Overflow (Odoo)
+
+---
+
+## 📄 License
+
+Dự án được phát hành theo giấy phép **MIT License**.
+
+Xem file `LICENSE` để biết thêm chi tiết.
