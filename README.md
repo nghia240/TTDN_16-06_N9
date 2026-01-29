@@ -216,7 +216,9 @@ screenshots/
 ├── lich_su_cong_tac.png
 ```
 
-> 📝 Hãy chụp ảnh thực tế và lưu trong thư mục `screenshots/`.
+![Dashboard hệ thống](Screenshots/GiaoDienQuanLyNhanVien.png)
+*Giao diện Quản lý nhân viên*
+
 
 ---
 
