@@ -214,9 +214,11 @@ screenshots/
 ├── ghi_nhan_thoi_gian.png
 ├── danh_sach_nhan_vien.png
 ├── lich_su_cong_tac.png
-```
+
+
 
 ![Dashboard hệ thống](Screenshots/GiaoDienQuanLyNhanVien.png)
+```<img width="1916" height="560" alt="GiaoDienQuanLyNhanVien" src="https://github.com/user-attachments/assets/e082f6b4-47c6-423f-8913-d90c3b868942" />
 *Giao diện Quản lý nhân viên*
 
 
